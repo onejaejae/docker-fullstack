@@ -1,6 +1,6 @@
+import { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     // 데이터베이스에 있는 값을 가져온다.
-    axios.get("api/values").then((res) => {
+    axios.get("/api/values").then((res) => {
       if (res.data.success) {
         setLists(res.data);
       }
@@ -23,7 +23,7 @@ function App() {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    axios.post("api/values", { value: Value }).then((res) => {
+    axios.post("/api/value", { value: Value }).then((res) => {
       if (res.data.success) {
         console.log("res", res);
         setLists([...Lists, res.data]);
