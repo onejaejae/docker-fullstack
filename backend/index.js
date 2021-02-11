@@ -12,17 +12,17 @@ app.use(bodyParser.json());
 // 테이블 생성하기
 // db.pool.query(
 //   `CREATE TABLE lists (
-//     id INTEGER AUTO_INCREMENT,
-//     value Text,
-//     PRIMARY  KEY (id)
+//   id INTEGER AUTO_INCREMENT,
+//   value TEXT,
+//   PRIMARY KEY (id)
 // )`,
-//   (err, results, field) => {
+//   (err, results, fileds) => {
 //     console.log("results", results);
 //   }
 // );
 
 // DB list table에 있는 모든 데이터를 프론트 서버에 보내주기
-app.get("api/values", (req, res) => {
+app.get("/api/values", (req, res) => {
   // 데이터베이스에서 모든 정보 가져오기
   db.pool.query("SELECT * FROM lists;", (err, results, field) => {
     if (err) {
@@ -34,7 +34,7 @@ app.get("api/values", (req, res) => {
 });
 
 // 클라이언트에서 입력한 값을 데이터베이스 리스트 테이블에 넣어주기
-app.post("api/values", (req, res) => {
+app.post("/api/value", (req, res) => {
   // 데이터베이스에 값 넣어주기
   db.pool.query(
     `INSERT INTO lists (value) VALUES("${req.body.value}")`,
